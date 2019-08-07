@@ -27,12 +27,12 @@ object AirportsByLatitudeProblem {
     val sc = new SparkContext(conf)
 
     // Load the input data
-    val textFile = sc.textFile("src/main/resources/airports.txt")
+    val textFile = sc.textFile("src/main/resources/input/airports.txt")
     // use take(n) to get the first n lines instead of collect
     // textFile.collect.foreach(line => println(line.split(",")(3)))
     val countryWithUsa = textFile.filter(line => line.split(Utils.COMMA_DELIMITER)(6).toFloat > 40)
     val usaAirportDetails = countryWithUsa.map(line => line.split(",")(1) + "," + line.split(",")(6))
     //usaAirportDetails.saveAsTextFile("hdfs:///tmp/usaairportdetails")
-    usaAirportDetails.saveAsTextFile("/tmp/usaairportdetailsl")
+    usaAirportDetails.saveAsTextFile("src/main/resources/output/usaairportdetailsl")
   }
 }

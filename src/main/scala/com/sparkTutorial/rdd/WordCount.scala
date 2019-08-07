@@ -13,7 +13,7 @@ object WordCount {
     val conf = new SparkConf().setAppName("wordCounts").setMaster("local[3]")
     val sc = new SparkContext(conf)
 
-    val lines = sc.textFile("src/main/resources/word_count.txt")
+    val lines = sc.textFile("src/main/resources/input/word_count.txt")
     val words = lines.flatMap(line => line.split(" "))
     words.foreach(println)
 

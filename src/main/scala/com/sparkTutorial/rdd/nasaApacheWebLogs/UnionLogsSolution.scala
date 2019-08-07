@@ -10,8 +10,8 @@ object UnionLogsSolution {
 
     val sc = new SparkContext(conf)
 
-    val julyFirstLogs = sc.textFile("in/nasa_19950701.tsv")
-    val augustFirstLogs = sc.textFile("in/nasa_19950801.tsv")
+    val julyFirstLogs = sc.textFile("src/main/resources/input/nasa_19950701.tsv")
+    val augustFirstLogs = sc.textFile("src/main/resources/input/nasa_19950801.tsv")
 
     val aggregatedLogLines = julyFirstLogs.union(augustFirstLogs)
 
@@ -19,7 +19,7 @@ object UnionLogsSolution {
 
     val sample = cleanLogLines.sample(withReplacement = true, fraction = 0.1)
 
-    sample.saveAsTextFile("out/sample_nasa_logs.csv")
+    sample.saveAsTextFile("src/main/resources/output/sample_nasa_logs.csv")
   }
 
   def isNotHeader(line: String): Boolean = !(line.startsWith("host") && line.contains("bytes"))
