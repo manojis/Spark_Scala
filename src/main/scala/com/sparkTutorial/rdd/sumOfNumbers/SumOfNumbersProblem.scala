@@ -1,5 +1,7 @@
 package com.sparkTutorial.rdd.sumOfNumbers
 
+import org.apache.spark.{SparkConf, SparkContext}
+
 object SumOfNumbersProblem {
 
   def main(args: Array[String]) {
@@ -9,5 +11,11 @@ object SumOfNumbersProblem {
 
        Each row of the input file contains 10 prime numbers separated by spaces.
      */
+    val sparkConf = new SparkConf().setAppName("SumOfNumbersProblem").setMaster("local[*]")
+    val sparkContext = new SparkContext(sparkConf)
+
+    val primeNumRdd = sparkContext.textFile("src/main/resources/input/prime_nums.txt")
+    val individualData = primeNumRdd.map(line => line.split("\t"))
+    individualData.foreach(println)
   }
 }
