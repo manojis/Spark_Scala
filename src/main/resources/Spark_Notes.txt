@@ -1,0 +1,58 @@
+port forwarding Hortonworks:
+https://hortonworks.com/tutorial/hortonworks-sandbox-guide/section/3/
+https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.1.0/administration/content/reference.html
+https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.1.0/administration/content/yarn-ports.html
+
+https://dev.to/awwsmm/installing-and-running-hadoop-and-spark-on-windows-33kc
+
+https://contribute.epam.com/products/89
+https://contribute.epam.com/products/7
+https://learn.epam.com/detailsPage?id=e7c8435f-65d2-4531-a77d-3eb3fa12f4de&source=LYNDA_COURSE
+curl -L -o spmohst.txt "https://drive.google.com/uc?export=download&id=0ByJLBTmJojjzbVhvSnQwNlhXUWs"
+C:\Users\manoj_nair\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\manoj_nair\hadoop\apache-hive-3.1.1-bin\conf
+hive --service metastore &
+hive --service hiveserver2 &
+
+create table stocks (date_ String, Ticker String, Open Double, High Double, Low Double, Close Double, Volume_for_the_day int) row format delimited fields terminated by ',';
+
+select date_, ticker, close,lag(close, 1) over(partition by ticker) as yesterday_price from stocks;
+select date_, ticker, close,case(lead(close,1) over(partition by ticker)-close) > 0 when true then "higher" when false then "lesser" end as Changes from stocks;
+select ticker, first_value(high) over(partition by ticker) as first_high from stocks
+select ticker, MAX(high) over(partition by ticker) as first_high from stocks group by ticker;
+
+beeline -n manoj_nair -u jdbc:hive2://localhost:10000
+
+create table player_data_partitioned(user_id Int,video_id Int, hour String) PARTITIONED BY(video_id Int) row format delimited fields terminated by ',' tblproperties("skip.header.line.count"="1");
+load data local inpath '/home/manoj_nair/player_data.txt' into table player_data_partitioned;
+
+select distinct(video_id),hour, count(video_id) over(partition by video_id) as total from player_data where hour = '2019062419' order by total desc limit 1;
+
+CREATE TABLE temps_orc_partition_date
+(statecode STRING, state STRING, county STRING, dateoflastchange STRING)
+PARTITIONED BY (datelocal STRING)
+STORED AS ORC
+
+hadoop fs -chmod -R 777 /user/hive
+hadoop fs -chmod 777 /tmp
+
+MYSQL Restart
+===============
+You should really use the Sys-V init scripts located in /etc/init.d.
+
+Start:
+sudo /etc/init.d/mysql start
+
+Stop:
+sudo /etc/init.d/mysql stop
+Restart / reload configs:
+
+sudo /etc/init.d/mysql restart
+
+Check run status:
+sudo /etc/init.d/mysql status
+
+docker run --hostname=quickstart.cloudera --privileged=true -t -i -v /Users/sohamadwani/Documents/yourDirectory:/src --publish-all=true -p 8888 cloudera/quickstart /usr/bin/docker-quickstart
+
+Hortonworks Spark:
+ssh root@sandbox-hdp.hortonworks.com -p 2222 -> WA3002g4
+spark-submit --class WordCount --master local ./hello_scala_2.11-0.1.jar
