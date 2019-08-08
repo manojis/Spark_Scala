@@ -3,7 +3,7 @@ https://hortonworks.com/tutorial/hortonworks-sandbox-guide/section/3/
 https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.1.0/administration/content/reference.html
 https://docs.hortonworks.com/HDPDocuments/HDP3/HDP-3.1.0/administration/content/yarn-ports.html
 
-https://dev.to/awwsmm/installing-and-running-hadoop-and-spark-on-windows-33kc
+
 
 https://contribute.epam.com/products/89
 https://contribute.epam.com/products/7
@@ -54,5 +54,11 @@ sudo /etc/init.d/mysql status
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -v /Users/sohamadwani/Documents/yourDirectory:/src --publish-all=true -p 8888 cloudera/quickstart /usr/bin/docker-quickstart
 
 Hortonworks Spark:
+scp -P 2222 spark_scala_2.11-0.1.jar root@sandbox-hdp.hortonworks.com:/root
 ssh root@sandbox-hdp.hortonworks.com -p 2222 -> WA3002g4
+for creating the jar file
+========================
+sbt package
+
+
 spark-submit --class WordCount --master local ./hello_scala_2.11-0.1.jar

@@ -15,7 +15,10 @@ object SumOfNumbersProblem {
     val sparkContext = new SparkContext(sparkConf)
 
     val primeNumRdd = sparkContext.textFile("src/main/resources/input/prime_nums.txt")
-    val individualData = primeNumRdd.map(line => line.split("\t"))
-    individualData.foreach(println)
+    val numbers = primeNumRdd.flatMap(line => line.split("\\s+"))
+    val validOnes = numbers.filter(number => !number.isEmpty)
+    val validInt = validOnes.map(num => num.toInt)
+
+    println("final result",validInt.reduce((x,y) => x + y))
   }
 }
