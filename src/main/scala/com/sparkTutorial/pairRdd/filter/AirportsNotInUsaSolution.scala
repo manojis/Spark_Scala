@@ -7,15 +7,16 @@ object AirportsNotInUsaSolution {
 
   def main(args: Array[String]) {
 
-    val conf = new SparkConf().setAppName("airports").setMaster("local")
+    val conf = new SparkConf().setAppName("airports").setMaster("local[4]")
     val sc = new SparkContext(conf)
 
-    val airportsRDD = sc.textFile("in/airports.text")
+    val airportsRDD = sc.textFile("src/main/resources/input/airports.txt")
 
     val airportPairRDD = airportsRDD.map(line => (line.split(Utils.COMMA_DELIMITER)(1),
       line.split(Utils.COMMA_DELIMITER)(3)))
+    airportPairRDD.foreach(println)
     val airportsNotInUSA = airportPairRDD.filter(keyValue => keyValue._2 != "\"United States\"")
 
-    airportsNotInUSA.saveAsTextFile("out/airports_not_in_usa_pair_rdd.text")
+    airportsNotInUSA.saveAsTextFile("src/main/resources/output/airports_not_in_usa_pair_rdd")
   }
 }

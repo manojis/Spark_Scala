@@ -62,3 +62,6 @@ sbt package
 
 
 spark-submit --class WordCount --master local ./hello_scala_2.11-0.1.jar
+
+AirportsNotInUsaProblem
+AirportsUpperCaseProblem
