@@ -1,5 +1,7 @@
 package com.sparkTutorial.pairRdd.mapValues
 
+import org.apache.spark.{SparkConf, SparkContext}
+
 object AirportsUppercaseProblem {
 
   def main(args: Array[String]) {
@@ -19,5 +21,14 @@ object AirportsUppercaseProblem {
        ("Wewak Intl", "PAPUA NEW GUINEA")
        ...
      */
+    val sparkConf = new SparkConf().setMaster("local[*]").setAppName("AirportsUppercaseProblem")
+    val sparkContext = new SparkContext(sparkConf)
+    val airportsUpperRDD = sparkContext.textFile("src/main/resources/input/airports.txt")
+    //create a pairRDD here from the regular RDD, use map function for that
+    val airportsUpperPairRDD = airportsUpperRDD.map((line:String) => (line.split(",")(1),line.split(",")(3)))
+    airportsUpperPairRDD.foreach(println)
+    val summation = airportsUpperPairRDD.mapValues(value => value.toUpperCase())
+    println("==============Airports with country in upper Case=========================")
+    summation.foreach(println)
   }
 }

@@ -22,10 +22,11 @@ object AirportsInUsaProblem {
 
     // Load the input data
     val textFile = sc.textFile("src/main/resources/input/airports.txt")
-    // use take(n) to get the first n lines instead of collect
-    // textFile.collect.foreach(line => println(line.split(",")(3)))
+
+    // its better to map it first and then filter it out.
     val countryWithUsa = textFile.filter(line => line.split(",")(3) > "\"United States\"")
-    val usaAirportDetails = countryWithUsa.map(line => line.split(",")(1) + "," + line.split(",")(2))
+    val usaAirportDetails = countryWithUsa.map(line => (line.split(",")(1), line.split(",")(2)))
+    usaAirportDetails.foreach(println)
     //usaAirportDetails.saveAsTextFile("hdfs:///tmp/usaairportdetails")
     usaAirportDetails.saveAsTextFile("src/main/resources/output/usaairportdetails")
   }

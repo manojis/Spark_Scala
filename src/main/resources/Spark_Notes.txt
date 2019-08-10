@@ -70,3 +70,5 @@ https://courses.epam.com/courses/course-v1:EPAM+SAS+S1/courseware/6ae89a13f10b43
 https://epam.sharepoint.com/sites/EPAMGCPCertificationMinskSeptember
 https://learn.epam.com/detailsPage?id=d0d270d7-4ab5-4f55-87d9-4cae4cba02b1&source=TRAINING
 https://learn.epam.com/detailsPage?id=7f2128cb-081d-4fc0-9b18-432b762ef119&source=TRAINING
+
+AirportsUpperCaseProblem
