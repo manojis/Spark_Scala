@@ -15,9 +15,10 @@ object WordCount {
 
     val lines = sc.textFile("src/main/resources/input/word_count.txt")
     val words = lines.flatMap(line => line.split(" "))
-    words.foreach(println)
+    val wordsMap = words.filter(word => !word.isEmpty).map(word => (word,1))
+    wordsMap.foreach(println)
 
-    val wordCounts = words.countByValue()
-    for ((word, count) <- wordCounts) println(word + " : " + count)
+    val wordCounts = wordsMap.reduceByKey((x,y) => x + y)
+    for ((word, count) <- wordCounts.collect()) println(word + " : " + count)
   }
 }

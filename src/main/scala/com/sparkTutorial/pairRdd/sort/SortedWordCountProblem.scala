@@ -1,5 +1,7 @@
 package com.sparkTutorial.pairRdd.sort
 
+import org.apache.spark.{SparkConf, SparkContext}
+
 
 object SortedWordCountProblem {
 
@@ -13,5 +15,7 @@ object SortedWordCountProblem {
        bag : 176
        ...
      */
+  val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SortedWordCountProblem")
+  val sparkContext = new SparkContext(sparkConf)
 }
 
