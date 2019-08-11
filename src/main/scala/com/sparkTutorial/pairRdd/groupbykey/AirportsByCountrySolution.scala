@@ -11,12 +11,13 @@ object AirportsByCountrySolution {
     val conf = new SparkConf().setAppName("airports").setMaster("local[*]")
     val sc = new SparkContext(conf)
 
-    val lines = sc.textFile("in/airports.text")
+    val lines = sc.textFile("src/main/resources/input/airports.txt")
 
     val countryAndAirportNameAndPair = lines.map(airport => (airport.split(Utils.COMMA_DELIMITER)(3),
                                                              airport.split(Utils.COMMA_DELIMITER)(1)))
 
     val airportsByCountry = countryAndAirportNameAndPair.groupByKey()
+    //airportsByCountry.foreach(println)
 
     for ((country, airportName) <- airportsByCountry.collectAsMap()) println(country + ": " + airportName.toList)
   }

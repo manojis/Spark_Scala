@@ -14,6 +14,7 @@ object SortedWordCountProblem {
        shoes : 193
        bag : 176
        ...
+       sortByKey
      */
   val sparkConf = new SparkConf().setMaster("local[*]").setAppName("SortedWordCountProblem")
   val sparkContext = new SparkContext(sparkConf)
