@@ -56,6 +56,12 @@ sudo /etc/init.d/mysql status
 
 docker run --hostname=quickstart.cloudera --privileged=true -t -i -v /Users/sohamadwani/Documents/yourDirectory:/src --publish-all=true -p 8888 cloudera/quickstart /usr/bin/docker-quickstart
 
+A container is an instance of the sandbox image. you must stop container dependencies before removing it.
+docker stop sandbox-hdp
+docker stop sandbox-proxy
+docker rm sandbox-hdp
+docker rm sandbox-proxy
+
 Hortonworks Spark:
 scp -P 2222 spark_scala_2.11-0.1.jar root@sandbox-hdp.hortonworks.com:/root
 ssh root@sandbox-hdp.hortonworks.com -p 2222 -> WA3002g4

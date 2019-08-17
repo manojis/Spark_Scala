@@ -7,14 +7,14 @@ import org.apache.spark.{SparkConf, SparkContext}
 object StackOverFlowSurvey {
 
   def main(args: Array[String]) {
-    Logger.getLogger("org").setLevel(Level.ERROR)
+    // Logger.getLogger("org").setLevel(Level.ERROR)
     val conf = new SparkConf().setAppName("StackOverFlowSurvey").setMaster("local[1]")
     val sparkContext = new SparkContext(conf)
 
     val total = sparkContext.longAccumulator
     val missingSalaryMidPoint = sparkContext.longAccumulator
 
-    val responseRDD = sparkContext.textFile("in/2016-stack-overflow-survey-responses.csv")
+    val responseRDD = sparkContext.textFile("src/main/resources/input/2016-stack-overflow-survey-responses.csv")
 
     val responseFromCanada = responseRDD.filter(response => {
       val splits = response.split(Utils.COMMA_DELIMITER, -1)

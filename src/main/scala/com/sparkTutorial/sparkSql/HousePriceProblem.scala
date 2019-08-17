@@ -1,5 +1,7 @@
 package com.sparkTutorial.sparkSql
 
+import org.apache.spark.sql.{DataFrameReader, SparkSession}
+
 
 object HousePriceProblem {
 
@@ -37,4 +39,14 @@ object HousePriceProblem {
         |................|.................|
         |................|.................|
          */
+  def main(args: Array[String]): Unit ={
+    val session = SparkSession.builder().appName("HousePriceProblem").master("local[1]").getOrCreate()
+    /**
+      * Returns a [[DataFrameReader]] that can be used to read non-streaming data in as a
+      * `DataFrame`.
+      * */
+    val realEstateDataset = session.read.option("header", "true").option("inferSchema", value = true).csv("src/main/resources/input/RealEstate.csv")
+    realEstateDataset.groupBy("Location").avg("Price SQ Ft").orderBy("avg(Price SQ Ft)").show()
+  }
+
 }
