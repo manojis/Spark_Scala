@@ -11,9 +11,9 @@ object UkMakerSpaces {
 
     val session = SparkSession.builder().appName("UkMakerSpaces").master("local[*]").getOrCreate()
 
-    val makerSpace = session.read.option("header", "true").csv("in/uk-makerspaces-identifiable-data.csv")
+    val makerSpace = session.read.option("header", "true").csv("src/main/resources/input/uk-makerspaces-identifiable-data.csv")
 
-    val postCode = session.read.option("header", "true").csv("in/uk-postcode.csv")
+    val postCode = session.read.option("header", "true").csv("src/main/resources/input/uk-postcode.csv")
        .withColumn("PostCode", functions.concat_ws("", functions.col("PostCode"), functions.lit(" ")))
 
     System.out.println("=== Print 20 records of makerspace table ===")

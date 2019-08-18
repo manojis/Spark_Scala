@@ -24,6 +24,7 @@ select ticker, first_value(high) over(partition by ticker) as first_high from st
 select ticker, MAX(high) over(partition by ticker) as first_high from stocks group by ticker;
 
 beeline -n manoj_nair -u jdbc:hive2://localhost:10000
+beeline -n mohitha -u jdbc:hive2://localhost:10000
 
 create table player_data_partitioned(user_id Int,video_id Int, hour String) PARTITIONED BY(video_id Int) row format delimited fields terminated by ',' tblproperties("skip.header.line.count"="1");
 load data local inpath '/home/manoj_nair/player_data.txt' into table player_data_partitioned;
