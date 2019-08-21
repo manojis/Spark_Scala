@@ -19,6 +19,8 @@ object AirportsByCountrySolution {
     val airportsByCountry = countryAndAirportNameAndPair.groupByKey()
     //airportsByCountry.foreach(println)
 
-    for ((country, airportName) <- airportsByCountry.collectAsMap()) println(country + ": " + airportName.toList)
+    for ((country, airportName) <- airportsByCountry.collectAsMap()) {
+      println(country + ": " + airportName.toList)
+    }
   }
 }
