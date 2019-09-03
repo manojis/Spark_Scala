@@ -9,7 +9,6 @@ object SortedWordCountProblem {
        output the number of occurrence of each word in descending order.
 
        Sample output:
-
        apple : 200
        shoes : 193
        bag : 176

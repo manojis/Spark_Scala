@@ -72,10 +72,3 @@ sbt package
 
 
 spark-submit --class WordCount --master local ./hello_scala_2.11-0.1.jar
-
-https://courses.epam.com/courses/course-v1:EPAM+SAS+S1/courseware/6ae89a13f10b43bd84d56e6e7c7f0bc0/91af1136154a48cf9e43a7e02c7648e2/1
-https://epam.sharepoint.com/sites/EPAMGCPCertificationMinskSeptember
-https://learn.epam.com/detailsPage?id=d0d270d7-4ab5-4f55-87d9-4cae4cba02b1&source=TRAINING
-https://learn.epam.com/detailsPage?id=7f2128cb-081d-4fc0-9b18-432b762ef119&source=TRAINING
-
-AirportsUpperCaseProblem
